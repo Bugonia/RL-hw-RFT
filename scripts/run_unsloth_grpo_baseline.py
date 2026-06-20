@@ -189,7 +189,12 @@ def main() -> None:
         train_dataset=dataset,
     )
     trainer.train()
-    model.save_lora(os.path.join(OUTPUT_DIR, "grpo_saved_lora"))
+    adapter_dir = os.path.join(OUTPUT_DIR, "grpo_saved_lora")
+    if hasattr(model, "save_lora"):
+        model.save_lora(adapter_dir)
+    else:
+        model.save_pretrained(adapter_dir)
+        tokenizer.save_pretrained(adapter_dir)
 
 
 if __name__ == "__main__":
