@@ -14,6 +14,7 @@ MODEL_NAME = os.getenv("MODEL_NAME", "unsloth/meta-Llama-3.1-8B-Instruct")
 OUTPUT_DIR = os.getenv("OUTPUT_DIR", "results/unsloth_grpo_baseline")
 REWARD_VARIANT = os.getenv("REWARD_VARIANT", "baseline")
 MAX_STEPS = int(os.getenv("MAX_STEPS", "250"))
+FAST_INFERENCE = os.getenv("FAST_INFERENCE", "0").lower() in {"1", "true", "yes", "on"}
 
 
 SYSTEM_PROMPT = """
@@ -129,7 +130,7 @@ def main() -> None:
         model_name=MODEL_NAME,
         max_seq_length=MAX_SEQ_LENGTH,
         load_in_4bit=True,
-        fast_inference=True,
+        fast_inference=FAST_INFERENCE,
         max_lora_rank=LORA_RANK,
         gpu_memory_utilization=float(os.getenv("GPU_MEMORY_UTILIZATION", "0.9")),
     )

@@ -71,6 +71,19 @@ This script is meant to run in Colab or on the provided 4090 machine after
 installing the Unsloth/TRL stack. It will not run in this local CPU-only
 workspace unless those GPU dependencies are installed.
 
+For a quick environment pilot without vLLM:
+
+```bash
+FAST_INFERENCE=0 MAX_STEPS=2 OUTPUT_DIR=results/grpo_pilot \
+python3 scripts/run_unsloth_grpo_baseline.py
+```
+
+For the closer Unsloth notebook reproduction, install vLLM and enable:
+
+```bash
+FAST_INFERENCE=1 python3 scripts/run_unsloth_grpo_baseline.py
+```
+
 ### Required Reproduction Outputs
 
 Save:
