@@ -1,0 +1,16 @@
+# Local smoke tests use only the Python standard library.
+#
+# GPU training environment, such as Colab or the provided 4090, should install
+# the Unsloth/TRL stack required by the course-provided GRPO notebook. Keep the
+# exact install command from the latest Unsloth notebook because CUDA, torch,
+# vLLM, and Colab compatibility change often.
+#
+# Typical training packages:
+# - unsloth
+# - trl
+# - transformers
+# - datasets
+# - accelerate
+# - bitsandbytes
+# - vllm
+# - torch
