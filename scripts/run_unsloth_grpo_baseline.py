@@ -126,14 +126,20 @@ def reward_functions():
 
 
 def main() -> None:
-    model, tokenizer = FastLanguageModel.from_pretrained(
-        model_name=MODEL_NAME,
-        max_seq_length=MAX_SEQ_LENGTH,
-        load_in_4bit=True,
-        fast_inference=FAST_INFERENCE,
-        max_lora_rank=LORA_RANK,
-        gpu_memory_utilization=float(os.getenv("GPU_MEMORY_UTILIZATION", "0.9")),
-    )
+    load_kwargs = {
+        "model_name": MODEL_NAME,
+        "max_seq_length": MAX_SEQ_LENGTH,
+        "load_in_4bit": True,
+        "fast_inference": FAST_INFERENCE,
+    }
+    if FAST_INFERENCE:
+        load_kwargs.update(
+            {
+                "max_lora_rank": LORA_RANK,
+                "gpu_memory_utilization": float(os.getenv("GPU_MEMORY_UTILIZATION", "0.9")),
+            }
+        )
+    model, tokenizer = FastLanguageModel.from_pretrained(**load_kwargs)
 
     model = FastLanguageModel.get_peft_model(
         model,
