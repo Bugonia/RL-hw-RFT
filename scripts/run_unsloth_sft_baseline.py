@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import os
 
+from unsloth import FastLanguageModel
 from datasets import load_dataset
 from trl import SFTConfig, SFTTrainer
-from unsloth import FastLanguageModel
 
 
 MAX_SEQ_LENGTH = int(os.getenv("MAX_SEQ_LENGTH", "1024"))

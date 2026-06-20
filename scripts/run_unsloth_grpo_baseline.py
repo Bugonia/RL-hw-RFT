@@ -3,9 +3,9 @@ from __future__ import annotations
 import os
 import re
 
+from unsloth import FastLanguageModel
 from datasets import Dataset, load_dataset
 from trl import GRPOConfig, GRPOTrainer
-from unsloth import FastLanguageModel
 
 
 MAX_SEQ_LENGTH = int(os.getenv("MAX_SEQ_LENGTH", "1024"))
@@ -187,4 +187,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
