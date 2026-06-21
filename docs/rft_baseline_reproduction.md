@@ -177,9 +177,21 @@ python3 scripts/evaluate_gsm8k_xml.py \
   --output_jsonl results/base_gsm8k_eval.jsonl
 ```
 
-For LoRA checkpoints, merge or load the adapter according to the Unsloth
-notebook's inference section, then run the same evaluation prompt and answer
-extraction logic.
+For LoRA checkpoints, pass `--adapter_path`:
+
+```bash
+python3 scripts/evaluate_gsm8k_xml.py \
+  --model_name unsloth/meta-Llama-3.1-8B-Instruct \
+  --adapter_path results/sft_pilot/sft_lora \
+  --limit 100 \
+  --output_jsonl results/sft_gsm8k_eval.jsonl
+
+python3 scripts/evaluate_gsm8k_xml.py \
+  --model_name unsloth/meta-Llama-3.1-8B-Instruct \
+  --adapter_path results/grpo_pilot/grpo_saved_lora \
+  --limit 100 \
+  --output_jsonl results/grpo_gsm8k_eval.jsonl
+```
 
 ## 5. Berkeley Baseline Reference
 
